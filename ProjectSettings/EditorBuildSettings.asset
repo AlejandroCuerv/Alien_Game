@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/corte1.unity
     guid: 3b52a0b56ab19ed4cbaed0237e1309ae
+  - enabled: 1
+    path: Assets/Scenes/nivel2.unity
+    guid: 91666d17341d8b4408cdce5b43b5b526
+  - enabled: 1
+    path: Assets/Scenes/nivel3.unity
+    guid: 943000aa30d8f0943b093b4224754542
   m_configObjects: {}

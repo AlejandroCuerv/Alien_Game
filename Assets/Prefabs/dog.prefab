@@ -137,3 +137,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   movRight: 1
+  Vidas: 2

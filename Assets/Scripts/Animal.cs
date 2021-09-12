@@ -7,8 +7,12 @@ public class Animal : MonoBehaviour
 
     [SerializeField] float speed;
     [SerializeField] bool movRight;
-
+    [SerializeField] int Vidas;
     float minX, maxX;
+    float slomo;
+    int Hab, Normal;
+    [SerializeField] bool Vida;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +22,8 @@ public class Animal : MonoBehaviour
 
         maxX = esquinaInfDer.x;
         minX = esquinaInfIzq.x;
+        Hab = 1;
+        Normal = Vidas;
     }
 
     // Update is called once per frame
@@ -43,18 +49,47 @@ public class Animal : MonoBehaviour
         {
             movRight = true;
         }
-        
-    }
 
+        Slomo();
+
+        if (Vida)
+        {
+            Vidas = 1;
+        }
+        else
+            Vidas = Normal;
+    
+
+    }
+    public void Slomo()
+    {
+        if (Input.GetKeyDown(KeyCode.X) && Hab <= 3)
+        {
+            Hab++;
+            slomo = Time.time + 2.5f;
+            Time.timeScale = 0.5f;
+            Vida = true;
+        }
+
+        else if (Time.time > slomo)
+        {
+            Time.timeScale = 1;
+            Vida = false;
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        if(collision.gameObject.CompareTag("Disparo"))
+        
+        if (collision.gameObject.CompareTag("Disparo"))
+        {
+            Vidas--;
+           
+        }
+        if (Vidas == 0)
         {
             (GameObject.Find("GameManager").GetComponent<GameManager>()).CaptureAnimal();
             Destroy(this.gameObject);
         }
-
     }
 
 }

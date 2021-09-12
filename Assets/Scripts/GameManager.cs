@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
-    [SerializeField] GameObject GameOverMenu;
+    [SerializeField] GameObject nextLevel;
     [SerializeField] int numAnimals;
-  
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -35,28 +35,40 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0;
                 pauseMenu.SetActive(true);
             }
-            else 
+            else
             {
                 Time.timeScale = 1;
                 pauseMenu.SetActive(false);
             }
 
-            
+
         }
     }
     public void BackToMainMenu()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 
     public void CaptureAnimal()
     {
         numAnimals--;
-        if (numAnimals < 1)
+        if (numAnimals == 0)
         {
+            nextLevel.SetActive(true);
             Time.timeScale = 0;
-            GameOverMenu.SetActive(true);
         }
+    }
+
+    public void LevelTwo()
+    {
+        SceneManager.LoadScene(2);
+        Time.timeScale = 1;
+    }
+    public void LevelThree()
+    {
+        SceneManager.LoadScene(3);
+        Time.timeScale = 1;
     }
 
 
