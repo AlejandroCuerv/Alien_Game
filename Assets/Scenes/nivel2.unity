@@ -1279,6 +1279,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7362902493478259381, guid: 4d5d5759006444e4b919c28ccc890018, type: 3}
+      propertyPath: Vida
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7362902493478259381, guid: 4d5d5759006444e4b919c28ccc890018, type: 3}
       propertyPath: Vidas
       value: 2
       objectReference: {fileID: 0}
@@ -2637,7 +2641,7 @@ GameObject:
   - component: {fileID: 1910064127}
   m_Layer: 0
   m_Name: Square (1)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

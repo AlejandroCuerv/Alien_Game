@@ -10,7 +10,8 @@ public class Animal : MonoBehaviour
     [SerializeField] int Vidas;
     float minX, maxX;
     float slomo;
-    int Hab, Normal;
+    int Hab;
+    int Normal;
     [SerializeField] bool Vida;
     
 
@@ -23,13 +24,13 @@ public class Animal : MonoBehaviour
         maxX = esquinaInfDer.x;
         minX = esquinaInfIzq.x;
         Hab = 1;
-        Normal = Vidas;
+        //Normal = Vidas;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(movRight)
+        if (movRight)
         {
             Vector2 movimiento = new Vector2(speed * Time.deltaTime, 0);
             transform.Translate(movimiento);
@@ -50,31 +51,25 @@ public class Animal : MonoBehaviour
             movRight = true;
         }
 
-        Slomo();
+        //if (Vida)
+        //{
+            //Vidas = 1;
+        //}
+        //else
+            //Vidas = Normal;
 
-        if (Vida)
-        {
-            Vidas = 1;
-        }
-        else
-            Vidas = Normal;
-    
-
-    }
-    public void Slomo()
-    {
         if (Input.GetKeyDown(KeyCode.X) && Hab <= 3)
         {
             Hab++;
             slomo = Time.time + 2.5f;
             Time.timeScale = 0.5f;
-            Vida = true;
+            //Vida = true;
         }
 
-        else if (Time.time > slomo)
+        if (Time.time > slomo)
         {
             Time.timeScale = 1;
-            Vida = false;
+            //Vida = false;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -83,13 +78,14 @@ public class Animal : MonoBehaviour
         if (collision.gameObject.CompareTag("Disparo"))
         {
             Vidas--;
-           
+            if (Vidas == 0)
+            {
+                
+                (GameObject.Find("GameManager").GetComponent<GameManager>()).CaptureAnimal();
+                Destroy(this.gameObject);
+            }
         }
-        if (Vidas == 0)
-        {
-            (GameObject.Find("GameManager").GetComponent<GameManager>()).CaptureAnimal();
-            Destroy(this.gameObject);
-        }
+      
     }
 
 }
